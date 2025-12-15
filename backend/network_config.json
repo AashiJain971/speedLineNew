@@ -1,0 +1,11 @@
+{
+  "stations": ["STN_A", "STN_B", "STN_C", "STN_D", "STN_E", "STN_F"],
+  "sections": [
+    {"id": "SEC_1", "start": "STN_A", "end": "STN_B", "length_km": 8.5, "capacity": 2, "max_speed_kmh": 120, "track_type": "double"},
+    {"id": "SEC_2", "start": "STN_B", "end": "STN_C", "length_km": 6.2, "capacity": 1, "max_speed_kmh": 100, "track_type": "single"},
+    {"id": "SEC_3", "start": "STN_C", "end": "STN_D", "length_km": 7.8, "capacity": 2, "max_speed_kmh": 140, "track_type": "double"},
+    {"id": "SEC_4", "start": "STN_D", "end": "STN_E", "length_km": 5.3, "capacity": 1, "max_speed_kmh": 110, "track_type": "single"},
+    {"id": "SEC_5", "start": "STN_E", "end": "STN_F", "length_km": 9.1, "capacity": 3, "max_speed_kmh": 160, "track_type": "double"},
+    {"id": "SEC_6", "start": "STN_B", "end": "STN_E", "length_km": 12.0, "capacity": 1, "max_speed_kmh": 90, "track_type": "single"}
+  ]
+}
