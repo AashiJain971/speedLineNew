@@ -114,8 +114,9 @@ const SimulationPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
         // Fetch current system state from real-time endpoint
-        const stateResponse = await fetch('http://localhost:8000/api/simulation/system-state');
+        const stateResponse = await fetch(`${apiBaseUrl}/api/simulation/system-state`);
         if (stateResponse.ok) {
           const stateData = await stateResponse.json();
           setSystemState(stateData);
@@ -125,7 +126,7 @@ const SimulationPage: React.FC = () => {
         }
 
         // Fetch dynamically generated scenarios
-        const scenariosResponse = await fetch('http://localhost:8000/api/simulation/scenarios');
+        const scenariosResponse = await fetch(`${apiBaseUrl}/api/simulation/scenarios`);
         if (scenariosResponse.ok) {
           const scenariosData = await scenariosResponse.json();
           setPredefinedScenarios(scenariosData.scenarios || []);
@@ -152,9 +153,10 @@ const SimulationPage: React.FC = () => {
     setIsRunning(true);
     
     try {
+      const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
       console.log('Running simulation with request:', scenarioRequest);
       
-      const response = await fetch('http://localhost:8000/api/simulate', {
+      const response = await fetch(`${apiBaseUrl}/api/simulate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
