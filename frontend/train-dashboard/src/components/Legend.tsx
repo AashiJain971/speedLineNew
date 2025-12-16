@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getTrainTypeColor } from '@/lib/utils';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { getTrainTypeColor } from '../lib/utils';
 import { MapPin, AlertTriangle, CheckCircle, Clock, Navigation, XCircle, Info } from 'lucide-react';
 import { motion } from 'framer-motion';
 

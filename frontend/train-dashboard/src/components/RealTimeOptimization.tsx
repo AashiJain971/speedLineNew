@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import useOptimizationEngine from '@/hooks/useOptimizationEngine';
+import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
+import { Button } from './ui/button';
+import useOptimizationEngine from '../hooks/useOptimizationEngine';
 import { Play, Square, RotateCcw, AlertTriangle, Bot, Clock, Train, 
          CheckCircle, XCircle, Zap, Activity, Settings } from 'lucide-react';
 

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { axiosInstance } from '@/lib/api';
-import { HealthResponse } from '@/types';
+import { axiosInstance } from '../lib/api';
+import { HealthResponse } from '../types';
 
 const fetcher = async (url: string) => {
   try {

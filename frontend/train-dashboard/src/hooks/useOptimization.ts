@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { axiosInstance } from '@/lib/api';
-import { OptimizationResult } from '@/types';
+import { axiosInstance } from '../lib/api';
+import { OptimizationResult } from '../types';
 
 const fetcher = async (url: string) => {
   try {

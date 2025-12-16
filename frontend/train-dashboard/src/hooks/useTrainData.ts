@@ -1,7 +1,7 @@
 import useSWR from 'swr';
-import { axiosInstance } from '@/lib/api';
-import { TrainBundle } from '@/types';
-import { TrainSnapshot } from '@/types/train-snapshot';
+import { axiosInstance } from '../lib/api';
+import { TrainBundle } from '../types';
+import { TrainSnapshot } from '../types/train-snapshot';
 
 const fetcher = async (url: string) => {
   try {

@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { axiosInstance } from '@/lib/api';
-import { Disruption } from '@/types';
+import { axiosInstance } from '../lib/api';
+import { Disruption } from '../types';
 
 const fetcher = async (url: string) => {
   try {

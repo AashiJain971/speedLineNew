@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { createPortal } from 'react-dom';
-import { TrainBundle } from '@/types';
+import { TrainBundle } from '../types';
 
 // Define comprehensive interfaces
 interface TrainData {

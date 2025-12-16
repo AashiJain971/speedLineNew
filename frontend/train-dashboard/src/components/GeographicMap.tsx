@@ -2,9 +2,9 @@
 
 import React, { useState, useRef, useMemo } from 'react';
 import { Train, ZoomIn, ZoomOut, RotateCcw, Navigation, MapPin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useNetworkConfig } from '@/hooks/useNetworkConfig';
-import { useTrainData } from '@/hooks/useTrainData';
+import { Button } from './ui/button';
+import { useNetworkConfig } from '../hooks/useNetworkConfig';
+import { useTrainData } from '../hooks/useTrainData';
 
 interface TrainPosition {
   id: string;
