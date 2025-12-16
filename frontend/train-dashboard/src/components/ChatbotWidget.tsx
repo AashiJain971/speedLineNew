@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MessageCircle, Maximize2, Minimize2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
@@ -16,8 +16,16 @@ export default function ChatbotWidget() {
   const [loading, setLoading] = useState(false);
   const [size, setSize] = useState({ width: 380, height: 500 });
   const [isResizing, setIsResizing] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const chatboxRef = useRef<HTMLDivElement>(null);
   const resizeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 640);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   // Check if API key is available
   const isApiKeyAvailable = !!GROQ_API_KEY;
@@ -96,7 +104,7 @@ export default function ChatbotWidget() {
   return (
     <>
       {/* Floating Chatbot Icon (Lower Right Corner) */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -117,11 +125,13 @@ export default function ChatbotWidget() {
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.9 }}
-            style={{ 
-              width: size.width, 
-              height: size.height,
-              right: '24px',
-              bottom: '100px'
+            style={{
+              width: isMobile ? "90vw" : size.width,
+              height: isMobile ? "70vh" : size.height,
+              right: isMobile ? "4vw" : "24px",
+              bottom: isMobile ? "80px" : "100px",
+              maxWidth: isMobile ? "420px" : undefined,
+              maxHeight: isMobile ? "80vh" : undefined
             }}
             className="fixed z-50 bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden backdrop-blur-sm"
           >
@@ -160,9 +170,9 @@ export default function ChatbotWidget() {
             </div>
             
             {/* Messages area */}
-            <div 
-              className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-gray-50" 
-              style={{ maxHeight: size.height - 140 }}
+            <div
+              className="flex-1 overflow-y-auto px-6 py-4 space-y-4 bg-gray-50"
+              style={{ maxHeight: isMobile ? "calc(70vh - 140px)" : `${size.height - 140}px` }}
             >
               {messages.map((msg, idx) => (
                 <motion.div 

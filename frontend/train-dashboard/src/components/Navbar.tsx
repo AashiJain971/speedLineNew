@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { Bell, Loader2, Train as TrainIcon } from "lucide-react";
+import { Bell, Loader2, Train as TrainIcon, Menu, X } from "lucide-react";
 
 type NavItem = {
   label: string;
@@ -35,6 +35,7 @@ export default function Navbar() {
   );
 
   // Notifications state
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [notifLoading, setNotifLoading] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>([]);
@@ -54,6 +55,10 @@ export default function Navbar() {
     if (!notifications || notifications.length === 0) return 0;
     return notifications.filter((n) => tsToMs(n.timestamp) > lastViewedAt).length;
   }, [notifications, lastViewedAt]);
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   // Fetch notifications from disruptions endpoint on mount and interval
   useEffect(() => {
@@ -136,6 +141,14 @@ export default function Navbar() {
 
           {/* Actions: Notifications */}
           <div className="flex items-center gap-2 relative">
+            <button
+              aria-label="Toggle navigation"
+              className="rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+              onClick={() => setMobileOpen((v) => !v)}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+
             {/* Notifications */}
             <button
               aria-label="Notifications"
@@ -193,6 +206,32 @@ export default function Navbar() {
 
           </div>
         </div>
+
+        {mobileOpen && (
+          <div className="md:hidden pb-3 border-t border-gray-200 mt-2 space-y-1">
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname === item.href || pathname.startsWith(item.href + "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={
+                    "block rounded-md px-3 py-2 text-sm font-medium transition-colors " +
+                    (isActive
+                      ? "bg-indigo-100 text-indigo-700 border border-indigo-200"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gray-900")
+                  }
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+        )}
       </div>
     </header>
   );
