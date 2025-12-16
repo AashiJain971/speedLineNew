@@ -3,12 +3,12 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import NotificationBell from '@/components/NotificationBell';
-import useHealthData from '@/hooks/useHealthData';
-import useTrainData from '@/hooks/useTrainData';
-import useDisruptions from '@/hooks/useDisruptions';
+import { Button } from '../../src/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../src/components/ui/card';
+import NotificationBell from '../../src/components/NotificationBell';
+import useHealthData from '../../src/hooks/useHealthData';
+import useTrainData from '../../src/hooks/useTrainData';
+import useDisruptions from '../../src/hooks/useDisruptions';
 import { 
   Train, CheckCircle, AlertTriangle, XCircle, Search, 
   Activity, TrendingUp, AlertOctagon, BarChart3, 

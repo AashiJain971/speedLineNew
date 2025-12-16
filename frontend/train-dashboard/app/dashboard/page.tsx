@@ -2,15 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import StatsCard from '@/components/StatsCard';
-import TrainVisualization from '@/components/TrainVisualization';
-import ControlPanel from '@/components/ControlPanel';
-import NotificationBell from '@/components/NotificationBell';
-import SettingsDrawer from '@/components/SettingsDrawer';
-import useTrainData from '@/hooks/useTrainData';
-import useHealthData from '@/hooks/useHealthData';
-import useDisruptions from '@/hooks/useDisruptions';
+import { Button } from '../../src/components/ui/button';
+import StatsCard from '../../src/components/StatsCard';
+import TrainVisualization from '../../src/components/TrainVisualization';
+import ControlPanel from '../../src/components/ControlPanel';
+import NotificationBell from '../../src/components/NotificationBell';
+import SettingsDrawer from '../../src/components/SettingsDrawer';
+import useTrainData from '../../src/hooks/useTrainData';
+import useHealthData from '../../src/hooks/useHealthData';
+import useDisruptions from '../../src/hooks/useDisruptions';
 import { Train, Zap, CheckCircle, Clock, Settings, Activity, TrendingUp, AlertTriangle, Route, BarChart3, MapPin, Timer, Gauge } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';

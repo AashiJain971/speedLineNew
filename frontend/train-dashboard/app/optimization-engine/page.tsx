@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import RealTimeOptimization from '@/components/RealTimeOptimization';
-import NotificationBell from '@/components/NotificationBell';
+import { Button } from '../../src/components/ui/button';
+import RealTimeOptimization from '../../src/components/RealTimeOptimization';
+import NotificationBell from '../../src/components/NotificationBell';
 import { Train, Bot, CheckCircle, Wrench, Radio, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 

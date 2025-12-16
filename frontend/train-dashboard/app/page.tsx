@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button } from '../src/components/ui/button';
 import { Train, BarChart3, Bot, AlertTriangle, TrendingUp, Heart, Settings, Zap, Activity, ArrowRight } from 'lucide-react';
 
 export default function HomePage() {

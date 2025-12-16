@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import GeographicMap from '@/components/GeographicMap';
-import NotificationBell from '@/components/NotificationBell';
+import { Button } from '../../src/components/ui/button';
+import GeographicMap from '../../src/components/GeographicMap';
+import NotificationBell from '../../src/components/NotificationBell';
 import { Train, MapPin, Activity } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useNetworkConfig } from '@/hooks/useNetworkConfig';
-import { useTrainData } from '@/hooks/useTrainData';
+import { useNetworkConfig } from '../../src/hooks/useNetworkConfig';
+import { useTrainData } from '../../src/hooks/useTrainData';
 
 export default function OptimizationPage() {
   const { data: networkConfig } = useNetworkConfig();

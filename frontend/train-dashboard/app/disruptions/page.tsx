@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import NotificationBell from '@/components/NotificationBell';
-import useDisruptions from '@/hooks/useDisruptions';
-import { getDisruptionSeverityColor } from '@/lib/utils';
+import { Button } from '../../src/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '../../src/components/ui/card';
+import NotificationBell from '../../src/components/NotificationBell';
+import useDisruptions from '../../src/hooks/useDisruptions';
+import { getDisruptionSeverityColor } from '../../src/lib/utils';
 import { Train, AlertTriangle, Wrench, Construction, AlertCircle, CheckCircle, Clock, Activity, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
