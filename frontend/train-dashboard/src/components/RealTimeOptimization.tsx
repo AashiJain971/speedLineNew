@@ -8,13 +8,11 @@ import { Play, Square, RotateCcw, AlertTriangle, Bot, Clock, Train,
          CheckCircle, XCircle, Zap, Activity, Settings } from 'lucide-react';
 
 interface RealTimeOptimizationProps {
-  apiBaseUrl?: string;
   pollingInterval?: number;
   autoStart?: boolean;
 }
 
 const RealTimeOptimization: React.FC<RealTimeOptimizationProps> = ({
-  apiBaseUrl = 'http://localhost:8000',
   pollingInterval = 20000, // 20 seconds like Python decision_taker.py
   autoStart = true
 }) => {
@@ -32,7 +30,7 @@ const RealTimeOptimization: React.FC<RealTimeOptimizationProps> = ({
     getActionIcon,
     getActionColor,
     getPriorityColor
-  } = useOptimizationEngine(apiBaseUrl, pollingInterval, undefined, autoStart);
+  } = useOptimizationEngine(pollingInterval, undefined, autoStart);
 
   // Cleanup on unmount
   React.useEffect(() => {
@@ -164,7 +162,7 @@ const RealTimeOptimization: React.FC<RealTimeOptimizationProps> = ({
           <div className="mt-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-600">
-                Polling every {pollingInterval / 1000} seconds from {apiBaseUrl}
+                Polling every {pollingInterval / 1000} seconds
               </span>
               <span className="text-gray-500">
                 Next update in ~{Math.ceil(pollingInterval / 1000)}s

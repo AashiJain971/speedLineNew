@@ -1,6 +1,7 @@
 import useSWR from 'swr';
 import { axiosInstance } from '@/lib/api';
 import { TrainBundle } from '@/types';
+import { TrainSnapshot } from '@/types/train-snapshot';
 
 const fetcher = async (url: string) => {
   try {
@@ -15,7 +16,7 @@ const fetcher = async (url: string) => {
 };
 
 export const useTrainData = (refreshInterval = 1000) => { // 1s polling for smooth movement
-  const { data, error, mutate, isLoading } = useSWR<{ payload: TrainBundle[] }>(
+  const { data, error, mutate, isLoading } = useSWR<TrainSnapshot>(
     '/api/train-data',
     fetcher,
     {
