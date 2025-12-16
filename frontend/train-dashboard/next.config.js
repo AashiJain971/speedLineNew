@@ -19,8 +19,12 @@ const nextConfig = {
     domains: ["localhost"],
   },
   webpack: (config) => {
+    // Alias for absolute imports
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
     return config;
+  },
+  experimental: {
+    webpackBuildWorker: true, // Enables faster builds and fixes some alias issues
   },
 };
 
