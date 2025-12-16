@@ -13,8 +13,40 @@ import os
 import json
 import threading
 import time
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+# Global variables for simulation control
+simulation_running = False
+simulation_thread = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Manage application lifespan - startup and shutdown"""
+    global simulation_running, simulation_thread
+    
+    # Startup: Initialize trains and start simulation
+    if not train_state.initialized:
+        logger.info("Initializing 10 trains (TR001-TR010)")
+        for i in range(1, 11):
+            train_id = f"TR{str(i).zfill(3)}"
+            train_data = initialize_train(train_id)
+            train_state.trains[train_id] = train_data
+        train_state.initialized = True
+        train_state.last_update = datetime.now()
+    
+    # Start background simulation thread
+    simulation_running = True
+    simulation_thread = threading.Thread(target=background_simulation, daemon=True)
+    simulation_thread.start()
+    logger.info("Background simulation thread started")
+    
+    yield  # Application runs here
+    
+    # Shutdown: Stop simulation
+    simulation_running = False
+    logger.info("Stopping background simulation")
+
+app = FastAPI(lifespan=lifespan)
 
 # Add CORS middleware for cross-origin requests
 app.add_middleware(
@@ -98,10 +130,6 @@ class TrainState:
         self.last_update = datetime.now()
 
 train_state = TrainState()
-
-# Background simulation control
-simulation_running = False
-simulation_thread = None
 
 def background_simulation():
     """Run continuous train simulation in background"""
@@ -614,34 +642,6 @@ async def get():
             "Section capacity management"
         ]
     }
-
-@app.on_event("startup")
-async def startup_event():
-    """Start background simulation when app starts"""
-    global simulation_running, simulation_thread
-    
-    # Initialize trains
-    if not train_state.initialized:
-        logger.info("Initializing 10 trains (TR001-TR010)")
-        for i in range(1, 11):
-            train_id = f"TR{str(i).zfill(3)}"
-            train_data = initialize_train(train_id)
-            train_state.trains[train_id] = train_data
-        train_state.initialized = True
-        train_state.last_update = datetime.now()
-    
-    # Start background simulation thread
-    simulation_running = True
-    simulation_thread = threading.Thread(target=background_simulation, daemon=True)
-    simulation_thread.start()
-    logger.info("Background simulation thread started")
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Stop background simulation when app shuts down"""
-    global simulation_running
-    simulation_running = False
-    logger.info("Stopping background simulation")
 
 @app.get("/api/network-config")
 async def get_network_config():
