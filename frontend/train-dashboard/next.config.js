@@ -21,10 +21,14 @@ const nextConfig = {
   webpack: (config) => {
     // Alias for absolute imports
     config.resolve.alias["@"] = path.resolve(__dirname, "src");
+
+    // Add src to module resolution roots (helps app/ folder find files)
+    config.resolve.modules.push(path.resolve(__dirname, "src"));
+
     return config;
   },
   experimental: {
-    webpackBuildWorker: true, // Enables faster builds and fixes some alias issues
+    webpackBuildWorker: true,
   },
 };
 
